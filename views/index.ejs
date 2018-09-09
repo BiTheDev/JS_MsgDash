@@ -26,17 +26,16 @@
                 <div class="showMsg">
                     <p><%= data[x].name %></p> 
                     <p><%= data[x].content %></p>
-                    <% for(var y in data[x].comment){ %>
-                        <div class="showCmt">
-                        <p><%= y.name %></p>
-                        <p><%= y.content %></p>
-                        </div>
+                    <% for(var key = 0; key< data[x].comment.length; key++)  { %>
+                    <p><%= data[x].comment[key].name %></p>
+                    <p><%= data[x].comment[key].content %></p>
                     <% } %>
                      <div class="cmt">
                          <h5>Comment</h5>
                         <form action="/createCmt" method="POST" >
                             <p>Name: <input type="text" name="Cmtname"></p>
                             <p>Comment:</p>
+                            <input type="hidden" name="msgid" value="<%= data[x]._id %>">
                             <textarea name="cmtxt" ></textarea>
                             <button type="submit">Create Comment</button>
                         </form>

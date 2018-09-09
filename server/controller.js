@@ -15,8 +15,10 @@ function home(req,res){
         }else{
             console.log("Home data");
             console.log(data); 
+            console.log(data.comment);
+            
         }
-        res.render("index", {data:data.reverse()});
+        res.render("index", {data:data.reverse(), cmt: data.comment});
     })
 }
 
@@ -37,12 +39,14 @@ function Messages(req,res){
             console.log("message results");
             console.log(data);      
         }
+        res.redirect("/");
     })
-    res.redirect("/");
 }
 
 function Comments(req,res){
     console.log("hit comment route");
+    console.log(req.body.msgid);
+    
     var newCmt = new Comment()
     newCmt.name = req.body.Cmtname
     newCmt.content = req.body.cmtxt
@@ -54,7 +58,7 @@ function Comments(req,res){
         }else{
             console.log("data");
             console.log(data);
-            Message.update({title : req.body.Msgname}, {$push : {comment : data}}, function (errs,data) {
+            Message.update({_id : req.body.msgid}, {$push : {comment : data}}, function (errs,data) {
                 if(errs){
                     console.log("comment error")
                     console.log(errs);

@@ -6,12 +6,12 @@ goose.connect("mongodb://localhost:27017/MessageDashboard", {useNewUrlParser: tr
 const CommentSchema = new goose.Schema({
     name:{
         type: String,
-        required: true,
-        minlength: [2, "yo give a larger name"]
+        required: [true, "Give me your name" ],
+        minlength: [2, "too short"]
     },
     content:{
         type:String,
-        required:true,
+        required:[true, "Comment !!!" ],
         minlength:[5, "Longer Comment"]
     }
 },{timestamps:true});
@@ -19,13 +19,13 @@ const CommentSchema = new goose.Schema({
 const MessageSchema = new goose.Schema({
     name:{
         type: String,
-        required: true,
-        minlength: [2, "yo give a larger name"]
+        required: [true, "Give me your name" ],
+        minlength: [2, "too short"]
     },
     content:{
         type:String,
-        required: true,
-        minlength:[5, "Longer message!"],
+        required: [true, "Message !!!" ],
+        minlength:[5, "Longer Message!"],
     },
     comment : [CommentSchema]
 },{timestamps:true});
