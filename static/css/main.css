@@ -12,8 +12,27 @@
     width:15%;
 }
 
-#msg textarea{
+textarea{
     width:90%;
     margin-left:5%;
-    resize: none;
+    resize: none !important;
+}
+
+.showMsg{
+    border:navy 2px groove;
+    width:80%;
+    margin:5% 10%;
+    box-shadow: gray 1px 2px;
+}
+
+.showCmt{
+    border: greenyellow .5px ridge;
+    width:70%;
+    margin:2% 28%;
+    padding:1%;
+    box-shadow: gray 1px 2px;
+}
+
+hr{
+    border:.5px solid black !important;
 }

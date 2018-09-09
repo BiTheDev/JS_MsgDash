@@ -34,12 +34,17 @@ function Messages(req,res){
         if(errs){
             console.log("message errs");
             console.log(errs);
+            for(var key in errs.errors){
+                console.log(errs.errors[key].message);
+                req.flash('message', errs.errors[key].message);
+            }
+            res.redirect('/');
             
         }else{
             console.log("message results");
-            console.log(data);      
+            console.log(data);     
+            res.redirect("/"); 
         }
-        res.redirect("/");
     })
 }
 
@@ -55,6 +60,12 @@ function Comments(req,res){
         if(errs){
             console.log("errs");
             console.log(errs);
+            for(var key in errs.errors){
+                console.log(errs.errors[key].message);
+                
+                req.flash('comment', errs.errors[key].message);
+            }
+            res.redirect('/');
         }else{
             console.log("data");
             console.log(data);
@@ -62,13 +73,19 @@ function Comments(req,res){
                 if(errs){
                     console.log("comment error")
                     console.log(errs);
+                    for(var key in errs.errors){
+                        console.log(errs.errors[key].message);
+                        
+                        req.flash('comment', errs.errors[key].message);
+                    }
+                    res.redirect('/');
                 }else{
                     console.log("comment results");
                     console.log(data);
                     
                 }                  
             })
+            res.redirect('/');
         }
-        res.redirect('/');
     })
 }

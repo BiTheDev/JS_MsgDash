@@ -14,8 +14,15 @@
         <h3>Dojo Message Board</h3>
     </nav>
     <div id="container">
+            <% JSON.stringify(messages) %>
+            <% if(messages.message) { %>
+                <% for (var x of messages.message) { %>
+                    <h3 style="color:red;"><%= x %></h3>
+                <% } %>
+            <% } %>
         <div id="msg">
             <form action="/createMsg" method="POST">
+                <h5>Create Message :</h5>
                 <p>Name : <input type="text" name="Msgname"></p>
                 <p>Message:</p>
                 <textarea name="msgtxt"></textarea>
@@ -24,20 +31,28 @@
         </div>
             <% for(var x in data) { %>
                 <div class="showMsg">
-                    <p><%= data[x].name %></p> 
-                    <p><%= data[x].content %></p>
+                    <p><b>Name : <%= data[x].name %></b> </p> 
+                    <span><b>Message : <%= data[x].content %></b> </span>
+                    <div class="showCmt">
                     <% for(var key = 0; key< data[x].comment.length; key++)  { %>
-                    <p><%= data[x].comment[key].name %></p>
-                    <p><%= data[x].comment[key].content %></p>
+                        <p>Name : <%= data[x].comment[key].name %></p>
+                        <span>Comment <%= data[x].comment[key].content %></span>
+                        <hr>
                     <% } %>
-                     <div class="cmt">
-                         <h5>Comment</h5>
-                        <form action="/createCmt" method="POST" >
+                         <h5>Create Comment :</h5>
+                         <% JSON.stringify(messages) %>
+                        <% if(messages.comment) { %>
+                            <% for (var x of messages.comment) { %>
+                                <h3 style="color:red;"><%= x %></h3>
+                            <% } %>
+                        <% } %>
+                        <form action="/createCmt" method="POST" class="cmt">
                             <p>Name: <input type="text" name="Cmtname"></p>
                             <p>Comment:</p>
+                            <!-- cant valid with input hidden -->
                             <input type="hidden" name="msgid" value="<%= data[x]._id %>">
                             <textarea name="cmtxt" ></textarea>
-                            <button type="submit">Create Comment</button>
+                            <button type="submit" class="btn btn-primary">Create Comment</button>
                         </form>
                     </div>
                 </div>
