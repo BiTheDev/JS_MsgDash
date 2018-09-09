@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Message Board</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <link rel="stylesheet" type = "text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <script src="main.js"></script> -->
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <h3>Dojo Message Board</h3>
+    </nav>
+    <div id="container">
+        <div id="msg">
+            <form action="/createMsg" method="POST">
+                <p>Name : <input type="text" name="Msgname"></p>
+                <p>Message:</p>
+                <textarea name="msgtxt"></textarea>
+                <button type="submit" class="btn btn-warning">Create Message</button>
+            </form>
+        </div>
+            <% for(var x in data) { %>
+                <div class="showMsg">
+                    <p><%= data[x].name %></p> 
+                    <p><%= data[x].content %></p>
+                    <% for(var y in data[x].comment){ %>
+                        <div class="showCmt">
+                        <p><%= y.name %></p>
+                        <p><%= y.content %></p>
+                        </div>
+                    <% } %>
+                     <div class="cmt">
+                         <h5>Comment</h5>
+                        <form action="/createCmt" method="POST" >
+                            <p>Name: <input type="text" name="Cmtname"></p>
+                            <p>Comment:</p>
+                            <textarea name="cmtxt" ></textarea>
+                            <button type="submit">Create Comment</button>
+                        </form>
+                    </div>
+                </div>
+
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

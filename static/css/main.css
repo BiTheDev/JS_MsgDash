@@ -1,0 +1,19 @@
+#container {
+    margin-top:2%;
+    width:80%;
+    margin-left:10%;
+    padding-top:20px;
+    border: ridge 2px navy;
+    font-family: 'Bree Serif', serif;
+    font-size: 20px;
+}
+
+#msg input{
+    width:15%;
+}
+
+#msg textarea{
+    width:90%;
+    margin-left:5%;
+    resize: none;
+}
