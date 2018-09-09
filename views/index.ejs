@@ -49,7 +49,7 @@
                         <form action="/createCmt" method="POST" class="cmt">
                             <p>Name: <input type="text" name="Cmtname"></p>
                             <p>Comment:</p>
-                            <!-- cant valid with input hidden -->
+                            <!-- cant validate with input hidden -->
                             <input type="hidden" name="msgid" value="<%= data[x]._id %>">
                             <textarea name="cmtxt" ></textarea>
                             <button type="submit" class="btn btn-primary">Create Comment</button>
